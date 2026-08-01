@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #9C0003;
+  --color-accent-light: #D5383B;
+  --color-accent-dark: #700002;
+  --color-dark: #1A1A1A;
+  --color-dark-card: #252525;
+  --color-beige: #F4EFE6;
+
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-heading: var(--font-archivo-black), var(--font-archivo), system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-beige);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+}
