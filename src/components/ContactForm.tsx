@@ -11,8 +11,7 @@ const SERVICIOS = [
   "Otro",
 ];
 
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwo2ATUXtux7-8v2Uy2ty9H1t_C3Ijl5Ln2exkXj6rh6VSaif5Ea119BvMnigPX_fAU/exec";
+const FORM_ENDPOINT = "/api/form";
 
 export default function ContactForm() {
   const [enviando, setEnviando] = useState(false);
@@ -22,16 +21,21 @@ export default function ContactForm() {
     e.preventDefault();
     setEnviando(true);
     const data = new FormData(e.currentTarget);
+    const payload = Object.fromEntries(data.entries());
+    payload.pagina = window.location.href;
+    payload.submission_id = `form-${Date.now()}`;
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
+      const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        body: data,
-        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error(`form_${res.status}`);
+      router.push("/gracias");
     } catch {
-      // no-cors responses are always opaque; redirect regardless
+      alert("No se ha podido enviar. Llámanos por teléfono o inténtalo de nuevo.");
+      setEnviando(false);
     }
-    router.push("/gracias");
   }
 
   return (
