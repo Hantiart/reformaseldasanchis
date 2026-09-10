@@ -1,11 +1,6 @@
 const PHONE = "865760705";
-const WHATSAPP_NUMBER = "34865760705";
-const WHATSAPP_MESSAGE =
-  "¡Hola! He contactado con vosotros por la web de Reformas Elda Sanchis y me gustaría…";
-
-const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  WHATSAPP_MESSAGE
-)}`;
+const WHATSAPP_FLOW_HREF =
+  "https://lead-flow-90n.pages.dev/?s=reformaseldasanchis";
 
 const PhoneIcon = () => (
   <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
@@ -36,7 +31,7 @@ export default function StickyCallBar() {
         </span>
       </a>
       <a
-        href={WHATSAPP_HREF}
+        href={WHATSAPP_FLOW_HREF}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-center gap-2 bg-[#25D366] active:bg-[#1FBE5A] text-white font-bold text-sm uppercase tracking-wide py-4"
